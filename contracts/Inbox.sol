@@ -1,15 +1,15 @@
 pragma solidity^0.4.17;
 
 contract Inbox{
-  string public initialMessage;
+  string public message;
 
   /*  function has name same as contract name, which means its an constructor*/
   /* note: syntax varies with the solidity version */
-  function Inbox(string memory newMessage) public{
-    initialMessage = newMessage;
+  function Inbox(string defaultMessage) public{
+    message = defaultMessage;
   }
 
-  function getMessage() public view returns (string memory){
-    return initialMessage;
+  function setMessage(string newMessage) public{
+    message = newMessage;
   }
 }
