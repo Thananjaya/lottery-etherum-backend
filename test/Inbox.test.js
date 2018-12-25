@@ -1,8 +1,10 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
-const Web3 = require('web3'); //it has capital 'W', which means its used to create instance
+//it has capital 'W', which means its used to create instance
+const Web3 = require('web3');
+// this one is an web3 instance for calling provider from ganache library
 const provider = ganache.provider();
-const instance = new Web3(provider); // this one is an web3 instance for calling provider from ganache library
+const instance = new Web3(provider);
 const { interface, bytecode } = require('../compile');
 
 let accounts;
