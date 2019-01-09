@@ -3,7 +3,7 @@ const ganache = require('ganache-cli');
 //it has capital 'W', which means its used to create instance
 const Web3 = require('web3');
 // this one is used to call provider from ganache library
-const provider = ganache.provider();
+const provider = ganache.provider(); // ganache used to provide nodes locally, instead of setting up in real time
 const instance = new Web3(provider);
 const { interface, bytecode } = require('../compile');
 
