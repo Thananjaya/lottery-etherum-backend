@@ -4,7 +4,7 @@ contract Lottery{
     address public manager;
     address[] public players;
 
-    constructor() public{
+    function Lottery() public{
         manager = msg.sender;
     }
 
@@ -14,7 +14,7 @@ contract Lottery{
     }
 
     function generateRandomNumber() private view returns(uint) {
-        return uint(keccak256(abi.encodePacked(block.difficulty, now, players)));
+        return uint(keccak256(block.difficulty, now, players));
     }
 
     function pickWinner() public managerAccess {
@@ -28,7 +28,7 @@ contract Lottery{
         _;
     }
 
-    function gelAllPlayers() public view returns(address[] memory){
+    function getAllPlayers() public view returns(address[] memory){
         return players;
     }
  }
