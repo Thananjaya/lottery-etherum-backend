@@ -34,7 +34,7 @@ describe('Lottery contract', () => {
     assert.equal(1, players.length);
   });
 
-  it('allows one player to enter', async () => {
+  it('allows many players to enter', async () => {
     await lottery.methods.enterLottery().send({
       from: accounts[0],
       value: instance.utils.toWei('0.05', 'ether')
@@ -59,11 +59,11 @@ describe('Lottery contract', () => {
 
   it('only manager can pick an winner', async () => {
     try{
-      await lottery.methods.pickWinner().send({
+      await lottery.methods.pickWinner().call({
         from: accounts[2],
       });
       assert(false);
-    } catch(err){
+    } catch(err) {
       assert.ok(err);
     }
   });
@@ -74,8 +74,9 @@ describe('Lottery contract', () => {
       value: instance.utils.toWei('2', 'ether')
     });
     const initialBalance = await instance.eth.getBalance(accounts[0]);
-    await lottery.methods.pickWinner().send({ from: accounts[0] });
+    await lottery.methods.pickWinner().call({ from: accounts[0] });
     const finalBalance = await instance.eth.getBalance(accounts[0]);
+    console.log(finalBalance, initialBalance, 'balances')
     const difference = finalBalance - initialBalance;
     assert(difference > instance.utils.toWei('1.8', 'ether'));
   })
