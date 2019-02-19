@@ -15,7 +15,7 @@ contract Lottery{
 
     function pickWinner() public managerAccess {
         uint index = randomNumber() % players.length;
-        players[1].transfer(this.balance);
+        players[1].transfer(this.balance); /* hard coding the the second player in players array as an winner */
         players = new address[](0);
     }
 
